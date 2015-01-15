@@ -1,0 +1,4 @@
+---
+
+- name: remove Packer archive
+  file: path=/tmp/packer_{{ packer_version }}_linux_amd64.zip state=absent force=yes
