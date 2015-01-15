@@ -5,9 +5,9 @@ galaxy_info:
   license: GPL
   min_ansible_version: 1.4
   platforms:
-   - name: Debian
+   - name: Linux
      versions:
-      - wheezy
+      - All x64
   categories:
    - packaging
    - system
