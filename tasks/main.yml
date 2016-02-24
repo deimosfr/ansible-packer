@@ -1,32 +1,32 @@
 ---
 
 - name: Install Packer packages dependencies
-  apt: name={{item}} state=installed update_cache=yes
+  apt: name={{ item }} state=installed update_cache=yes
   with_items:
     - unzip
     - gawk
   tags: packer
 
 - name: Check if Packer is already installed
-  stat: path={{packer_destination}}/packer
+  stat: path={{ packer_destination }}/packer
   register: packer_installed
   tags: packer
 
 - name: Get Packer current version
-  shell: "{{packer_destination}}/packer version | awk -F' v' '/^Packer/{print $2}'"
+  shell: "{{ packer_destination }}/packer version | awk -F' v' '/^Packer/{print $2}'"
   register: packer_current_version
   when: packer_installed.stat.exists
   changed_when: False
   tags: packer
 
 - name: Download Packer
-  get_url: url=https://dl.bintray.com/mitchellh/packer/packer_{{ packer_version }}_linux_amd64.zip
-           dest=/tmp/packer_{{ packer_version }}_linux_amd64.zip
-  when: packer_installed.stat.exists == False or packer_current_version.stdout != "{{packer_version}}"
+  get_url: url={{ packer_http_src }}
+           dest=/tmp/packer_{{ packer_version }}_{{ packer_arch }}.zip
+  when: packer_installed.stat.exists == False or packer_current_version.stdout != "{{ packer_version }}"
   tags: packer
 
 - name: Unzip and install Packer
-  unarchive: src=/tmp/packer_{{ packer_version }}_linux_amd64.zip dest={{packer_destination}} copy=no
-  when: packer_installed.stat.exists == False or packer_current_version.stdout != "{{packer_version}}"
+  unarchive: src=/tmp/packer_{{ packer_version }}_{{ packer_arch }}.zip dest={{packer_destination}} copy=no
+  when: packer_installed.stat.exists == False or packer_current_version.stdout != "{{ packer_version }}"
   notify: remove Packer archive
   tags: packer

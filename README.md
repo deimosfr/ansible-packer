@@ -17,7 +17,8 @@ them are as follows.
 
 ```
 # Packer version to install
-packer_version: '0.7.5'
+packer_version: '0.9.0'
+packer_arch: 'linux_amd64'
 # Packer destination folder
 packer_destination: '/usr/bin'
 ```
@@ -33,7 +34,7 @@ Examples
   roles:
     - packer
   vars:
-    - packer_version: '0.7.5'
+    - packer_version: '0.9.0'
 
 ```
 
