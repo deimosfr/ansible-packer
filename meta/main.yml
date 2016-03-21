@@ -5,10 +5,10 @@ galaxy_info:
   license: GPL
   min_ansible_version: 1.4
   platforms:
-   - name: Linux
+   - name: GenericLinux
      versions:
-      - All x64
-  categories:
+      - all
+  galaxy_tags:
    - packaging
    - system
    - cloud
