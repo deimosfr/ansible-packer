@@ -8,7 +8,7 @@ galaxy_info:
    - name: Linux
      versions:
       - All x64
-  categories:
+  galaxy_tags:
    - packaging
    - system
    - cloud
